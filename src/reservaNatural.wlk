@@ -10,55 +10,51 @@ object reserva {
 }
 
 class Habitat {
-	const especies = []
+	const seresVivos = []
 	
-	method agregarEspecies(listaEspecies) {especies.addAll(listaEspecies)}
-	method totalBiomasa() = especies.sum({e=>e.biomasa()})
-	method agregarEspecie(unaEspecie) = especies.add(unaEspecie)
-	method cantidadEjemplaresGrandes() = especies.count({e=>e.esGrande()})
-	method cantidadEjemplaresPequenios() = especies.count({e=>e.esPequenio()})
-	method hayMedianos() = especies.any({e=>e.esMediano()})
+	method agregarEspecies(listaEspecies) {seresVivos.addAll(listaEspecies)}
+	method totalBiomasa() = seresVivos.sum({e=>e.biomasa()})
+	method agregarEspecie(unaEspecie) = seresVivos.add(unaEspecie)
+	method cantidadEjemplaresGrandes() = seresVivos.count({e=>e.esGrande()})
+	method cantidadEjemplaresPequenios() = seresVivos.count({e=>e.esPequenio()})
+	method hayMedianos() = seresVivos.any({e=>e.esMediano()})
 	method estaEnEquilibrio() = 
 		self.cantidadEjemplaresGrandes() < self.cantidadEjemplaresPequenios() / 3 &&
 		self.hayMedianos()
-	method especiesExistentes() = especies.map({e=>e.especie()})
+	method especiesExistentes() = seresVivos.map({e=>e.especie()})
 	method contieneEspecie(unaEspecie) = self.especiesExistentes().contains(unaEspecie)
 	method producirIncendio() {
-		especies.forEach({e=>e.consecuenciasPorIncendio()})
+		seresVivos.forEach({e=>e.consecuenciasPorIncendio()})
 	}
 }
 
-class TipoDeEspecieFauna {
+class EspecieFauna {
 	const property pesoReferencia
 	const property formaDeLocomocion
 	const property coeficiente
 }
 
 class Animal {
-	const property tipoDeEspecie
+	const property especie
 	var peso
 	var estaVivo = true
 	
-	method biomasa() = peso**2 / tipoDeEspecie.coeficiente()
-	method esGrande() = peso > tipoDeEspecie.pesoReferencia() * 2
-	method esPequenio() = peso < tipoDeEspecie.pesoReferencia() / 2
+	method biomasa() = peso**2 / especie.coeficiente()
+	method esGrande() = peso > especie.pesoReferencia() * 2
+	method esPequenio() = peso < especie.pesoReferencia() / 2
 	method esMediano() = !self.esGrande() && !self.esMediano()
 	method consecuenciasPorIncendio() {
 		peso *= 0.9
-		if(!self.seSalva()) estaVivo = false
+		if(!especie.formaDeLocomocion().seSalva(self)) estaVivo = false
 	}	
-	method seSalva() = 
-		tipoDeEspecie.formaDeLocomocion() == nadar.locomocion() ||
-		(tipoDeEspecie.formaDeLocomocion() == volar.locomocion() && self.esGrande()) ||
-		(tipoDeEspecie.formaDeLocomocion() == correr.locomocion() && self.esMediano()) 
 						
 }
 
-class TipoDeEspecieFlora {}
+class EspecieFlora {}
 
 class Planta {
 	var estaViva = true
-	const property tipoDeEspecie
+	const property especie
 	var property altura
 		
 	method biomasa() = 50.min(altura * 2)
@@ -71,7 +67,7 @@ class Planta {
 	}
 }
 
-object volar {method locomocion() = self}
-object nadar {method locomocion() = self}
-object correr {method locomocion() = self}
-object quedarseQuieto {method locomocion() = self}
+object volar {method locomocion() = self ; method seSalva(animal) = animal.esGrande()}
+object nadar {method locomocion() = self ; method seSalva(_) = true}
+object correr {method locomocion() = self ; method seSalva(animal) = animal.esMediano()}
+object quedarseQuieto {method locomocion() = self ; method seSalva(_) = false}
