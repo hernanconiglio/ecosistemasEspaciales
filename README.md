@@ -1,20 +1,19 @@
 # Ecosistemas espaciales
-### Por Lucas Spigariol
+##### Por Lucas Spigariol
 
-<img src="img/ecosistemasEspaciales.png" >
+<img src="img/ecosistemasEspaciales.png" height="400" width="768">
 
 Un grupo de colonos espaciales decidió crear una reserva natural en Marte para recrear varios hábitats de la Tierra en este planeta.
 
-La reserva natural cuenta con diferentes hábitats, por ejemplo, llanura, bosque, desierto, cada uno con su propia fauna y flora.
+La reserva natural cuenta con diferentes hábitats, por ejemplo, llanura, bosque, desierto, cada uno con su propia fauna y flora. 
 
 Tanto los animales como las plantas pertenecen a una especie que las identifica.
+Las plantas (flora) se caracterizan por tener una altura en metros y su biomasa es igual al doble de dicha altura, pero nunca más de 50 unidades. Actualmente está establecida en 10 la altura límite con la que se considera grande o pequeña una planta. 
 
-Las plantas (flora) se caracterizan por tener una altura en metros y su biomasa es igual al doble de dicha altura, pero nunca más de 50 unidades. 
-Actualmente está establecida en 10 la altura límite con la que se considera grande o pequeña una planta.
+De los los animales (fauna) se conoce cuánto pesan.  La biomasa de un animal se calcula como el peso al cuadrado sobre el coeficiente propio de su especie. Los animales pueden ser pequeños (si su peso es menor a la mitad del peso de referencia de su especie ), grandes (si pesan más del doble del peso de referencia de su especie) o medianos, en cualquier otro caso.  Además, se sabe la forma de locomoción propia de la especie: pueden volar (x ej golondrina), nadar (x ej delfín), correr (x ej hormiga) o quedarse siempre quietos (x ej mejillón).
 
-De los los animales (fauna) se conoce cuánto pesan.  Además se sabe su forma de locomoción: pueden volar, nadar, correr o quedarse siempre quietos. La biomasa de un animal se calcula como el peso al cuadrado sobre el coeficiente propio de su especie. Los animales pueden ser pequeños (si su peso es menor a la mitad del peso de referencia de su especie ), grandes (si pesan más del doble de del peso de referencia de su especie) o medianos, en cualquier otro caso.
 
-<img src="img/marsColonization.png">
+<img src="img/marsColonization.png"  height="600" width="768">
 
 Para conocer el estado actual de la reserva y de esa forma poder tomar decisiones de forma temprana ante cambios súbitos, se nos pidió poder determinar:
 
